@@ -1,0 +1,36 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel='stylesheet' href='/stylesheets/update.css' />
+</head>
+<body class=" bg-dark-subtle text-emphasis-dark">
+  <header>
+    <%- include('../partials/header'); -%>
+  </header>
+  <form action="/users/profile/update/" class="decor" method="post">
+    <div class="form-left-decoration"></div>
+    <div class="form-right-decoration"></div>
+    <div class="circle"></div>
+    <div class="form-inner">
+      <h1>Update Form</h1>
+      <input type="text" placeholder="Fullname" name="fullname" value="<%= user.fullname %>">
+      <input type="text" placeholder="Username" name="username" value="<%= user.username %>">
+      <select class="form-select" aria-label="Default select example" name="gender">
+        <option value="male" <%=user.gender==="male" ? 'selected' : '' %>>Male</option>
+        <option value="female" <%=user.gender==="female" ? 'selected' : '' %>>Female</option>
+        <option value="unknown" <%=user.gender==="unknown" ? 'selected' : '' %>>Unknown</option>
+      </select>
+      <input type="email" placeholder="Email" name="email" value="<%= user.email %>">
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</html>

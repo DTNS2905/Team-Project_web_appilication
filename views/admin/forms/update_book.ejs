@@ -1,0 +1,73 @@
+<!-- Modal -->
+<div class="modal fade" id="modalUpdate<%= index %>" tabindex="-1" aria-labelledby="modalUpdate<%= index %>" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="text-align: left;">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 " id="exampleModalLabel">Update Book</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/admin/books/<%= book.data[index]._id %>">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" placeholder="Enter title..." name="title"
+                                required value="<%= book.data[index].title %>">
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="number" min="0" class="form-control" id="price" placeholder="Enter price..."
+                                name="price" required value="<%= book.data[index].price %>">
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label for="authorId" class="form-label">Authors</label>
+                            <select id="authorId" class="form-select" aria-label="Default select example"
+                                name="authorId" required>
+                                <% authors.forEach((item)=> { %>
+                                    <option value="<%= item._id %>" <%= book.data[index].authorName === item.fullname? "selected" : "" %>>
+                                        <%= item.fullname %>
+                                    </option>
+                                    <%}) %>
+                            </select>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label for="publisherId" class="form-label">Book Publisher</label>
+                            <select id="publisherId" class="form-select" name="publisherId"
+                                aria-label="Default select example" required>
+                                <% publishers.forEach((item)=> { %>
+                                    <option value="<%= item._id %>" <%= book.data[index].publisherName === item.fullname? "selected" : "" %>>
+                                        <%= item.fullname %>
+                                    </option>
+                                    <%}) %>
+                            </select>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label for="genre" class="form-label">Book Genre</label>
+                            <select id="genre" class="form-select" name="genre" aria-label="Default select example"
+                                required>
+                                <% genres.forEach((item)=> { %>
+                                    <option  value="<%= item._id %>" <%= book.data[index].genreName === item.title? "selected" : "" %>>
+                                        <%= item.title %>
+                                    </option>
+                                    <%}) %>
+                            </select>
+                        </div>
+                        <input type="hidden" value="<%= book.data[index].image %>" name="image" />
+                        <!-- <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label for="upload" class="form-label">Book image</label>
+                            <input class="form-control" type="file" id="upload" name="upload" required>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label class="form-label">Image review</label>
+                            <img style="max-width: 100%; object-fit: contain;" id="preview" src="#" />
+                        </div> -->
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

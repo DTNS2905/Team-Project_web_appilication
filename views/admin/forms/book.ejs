@@ -1,0 +1,85 @@
+<!-- Bootstrap icons-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+<button class="btn btn-outline-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+    aria-controls="offcanvasRight">Create new book</button>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">New Book</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form method="POST" action="/admin/book" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label for="title" class="form-label">Book title</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter title..." name="title"
+                        required>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label for="price" class="form-label">Book price</label>
+                    <input type="number" min="0" class="form-control" id="price" placeholder="Enter price..."
+                        name="price" required>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label for="authorId" class="form-label">Book Author</label>
+                    <select id="authorId" class="form-select" aria-label="Default select example" name="authorId"
+                        required>
+                        <% authors.forEach((item, index)=> { %>
+                            <option selected value="<%= item._id %>">
+                                <%= item.fullname %>
+                            </option>
+                            <%}) %>
+                    </select>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label for="publisherId" class="form-label">Book Publisher</label>
+                    <select id="publisherId" class="form-select" name="publisherId"
+                        aria-label="Default select example" required>
+                        <% publishers.forEach((item, index)=> { %>
+                            <option selected value="<%= item._id %>">
+                                <%= item.fullname %>
+                            </option>
+                            <%}) %>
+                    </select>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label for="genre" class="form-label">Book Genre</label>
+                    <select id="genre" class="form-select" name="genre" aria-label="Default select example"
+                        required>
+                        <% genres.forEach((item, index)=> { %>
+                            <option selected value="<%= item._id %>">
+                                <%= item.title %>
+                            </option>
+                            <%}) %>
+                    </select>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label for="upload" class="form-label">Book image</label>
+                    <input class="form-control" type="file" id="upload" name="upload" required>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label class="form-label">Image review</label>
+                    <img style="max-width: 100%; object-fit: contain;" id="preview" src="#" />
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-outline-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    var fileInput = document.querySelector("#upload");
+    var previewImage = document.querySelector("#preview")
+    fileInput.onchange = evt => {
+        const [file] = fileInput.files
+        if (file) {
+            previewImage.src = URL.createObjectURL(file)
+        }
+    }
+</script>

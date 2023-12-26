@@ -1,0 +1,85 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel='stylesheet' href='/public/stylesheets/style.css' />
+</head>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+<div class="container">
+    
+    <div class="card mt-3">
+
+        <div class="card-header">
+            <h3>
+                Create new book or update book
+            </h3>
+        </div>
+        <form method="post" action="/books" enctype="multipart/form-data">
+            <div class="card-body">
+                <div class="row">
+                    <div class="mb-3 container col-8">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <label for="title" class="form-label">Book title</label>
+                                <input type="text" class="form-control" id="title" placeholder="Enter title..." name="title" required>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <label for="price" class="form-label">Book price</label>
+                                <input type="number" min="0" class="form-control" id="price" placeholder="Enter price..." name="price"
+                                    required>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <label for="authorId" class="form-label">Book Author</label>
+                                <select id="authorId" class="form-select" aria-label="Default select example" name="authorId" required>
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">Sean Kine</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <label for="publisherId" class="form-label">Book Publisher</label>
+                                <select id="publisherId" class="form-select" name="publisherId" aria-label="Default select example"
+                                    required>
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">Sean Kine</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <label for="genre" class="form-label">Book Genre</label>
+                                <select id="genre" class="form-select" name="genre" aria-label="Default select example" required>
+                                    <option selected>Open this select menu</option>
+                                    <option value="fiction">Fiction</option>
+                                    <option value="non-fiction">Non Fiction</option>
+                                </select>
+                            </div>
+                    
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <label for="upload" class="form-label">Book image</label>
+                                <input class="form-control" type="file" id="upload" name="upload" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 container col-4">
+                        <img style="max-height: 100%;" id="preview" src="#" />
+                        <script>
+                            var fileInput = document.querySelector("#upload");
+                            var previewImage = document.querySelector("#preview")
+                            fileInput.onchange = evt => {
+                                const [file] = fileInput.files
+                                if (file) {
+                                    previewImage.src = URL.createObjectURL(file)
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary btn-block w-100">Submit</button>
+            </div>
+        </form>
+    </div>
+
+</div>

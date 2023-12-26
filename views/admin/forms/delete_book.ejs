@@ -1,0 +1,17 @@
+<!-- Modal -->
+<div class="modal fade" id="modalDelete<%= index %>" tabindex="-1" aria-labelledby="modalDelete<%= index %>"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="text-align: left;">
+            <div class="modal-header d-flex justify-content-center">
+                <h1 class="modal-title fs-5 " id="exampleModalLabel">Delete Book</h1>
+            </div>
+            <form method="POST" action="/admin/books/<%= book.data[index]._id %>/delete">
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-primary col-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger col-4">Are You Sure ?</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
